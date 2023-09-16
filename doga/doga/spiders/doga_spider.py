@@ -3,39 +3,62 @@ import scrapy
 from ..items  import DogaItem
 from ..FechaParser import FechaParser
 import datetime
+import re
 
 
 class DogaSpiderSpider(scrapy.Spider):
     name = "doga_spider"
     allowed_domains = ["xunta.gal"]
-    start_urls = ["https://www.xunta.gal/diario-oficial-galicia"]
+    start_urls = ["https://www.xunta.gal/diario-oficial-galicia"] # urls para cada numero del DOGA
+
 
     def parse(self, response):
-        item = DogaItem()
-        # Obtengo el Número del Diario Oficial de Galicia
-        # dog_numero = response.xpath('//span[@id="DOGNumero"]/text()').extract_first()
-        dog_numero = response.css('span#DOGNumero::text').getall()[0].split(" ")[1]
-        item['numero'] = dog_numero
-        # Obtengo la fecha FIXME: Datos de la fecha desordenados
-        # dog_data = response.xpath('//span[@id="DOGData"]/text()').extract_first()
-        dog_data = response.css('span#DOGData::text').getall()[0]
-        item['dia_semana'], item['dia'],  item['mes'],item['ano']  = FechaParser.extract(dog_data)
-        # Obtengo los enlaces a las secciones
-        elementos_li = response.css('li.dog-toc-sumario')
-        #   Inicializa una lista para almacenar los href o None si no se encuentran
         base_url = "https://www.xunta.gal/diario-oficial-galicia/"
-        item['ligazons_seccions'] = []
-        #   Itera a través de los elementos <li> encontrados
-        for elemento_li in elementos_li:
-            # Intenta obtener el href del enlace dentro del <li>
-            href = elemento_li.css('a::attr(href)').get()
-            # Si no se encuentra un enlace, agrega None a la lista
-            if href is None:
-                item['ligazons_seccions'].append(None)
-            else:
-                item['ligazons_seccions'].append(f"{base_url}{href}")
-        # Obtengo los enlaces del contenido de las secciones
-        # TODO: Parsear los enlaces antes de devolver el ITEM
-        print(")))))))))))))))))))))))))", item)
+        # Obtengo los enlaces a secciones y subsecciones
+        links = response.css('li.dog-toc-sumario a::attr(href)').extract()
+        # Las subsecciones se distinguen por usar el caracter #ANCHOR, las elimino porque duplican los enlaces
+        filtered_links = [link for link in links if not re.search(r'#', link)]
+        for link in filtered_links:
+            yield scrapy.Request(url=f'{base_url}{link}', callback=self.parse_sections)
+
+    def parse_sections(self, response):
+        base_url = "https://www.xunta.gal"
+        content_links = response.css("div.story a::attr(href)").extract()
+        for link in content_links:
+            yield scrapy.Request(url=f'{base_url}{link}', callback=self.parse_content)
+
+    def parse_content(self, response):
+        item = DogaItem()
+        item['document_number'] = response.css("span#DOGNumero::text").get().strip().split(".")[1]
+        item['document_page'] = response.css("span#DOGPaxina::text").get().strip().split(".")[1]
+        item['document_url'] = None
+
+        traduccion_meses = {
+            "xaneiro": "January",
+            "febreiro": "February",
+            "marzo": "March",
+            "abril": "April",
+            "maio": "May",
+            "xuño": "June",
+            "xullo": "July",
+            "agosto": "August",
+            "setembro": "September",
+            "outubro": "October",
+            "novembro": "November",
+            "decembro": "December"
+        }
+        publication = response.css("span#DOGData::text").get().strip().split(" de ")
+        item['publication_day'] = publication[0].split(",")[1]
+        item['publication_month'] = traduccion_meses[publication[1]]
+        item['publication_year'] = publication[2]
+
+        item['announcement_section'] = response.css("span.dog-texto-seccion::text").get()
+        item['announcement_subsection'] = response.css("span.dog-texto-subseccion::text").get()
+        item['announcement_issuer'] = response.css("span.dog-texto-organismo::text").get()
+        item['announcement_summary'] = response.css("span.dog-texto-sumario::text").get()
+        item['announcement_content'] = response.css("div.story").get().strip()
+        #item['announcement_signature'] = response.css("pdog-firma-centrada::text").strip()
+
+        print('&&&&&&&&&&&&&&&&&&&&&&&&&&&&', item)
 
         yield item

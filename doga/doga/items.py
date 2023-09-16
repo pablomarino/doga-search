@@ -5,37 +5,18 @@
 
 import scrapy
 
-
 class DogaItem(scrapy.Item):
-    # numero
-    numero = scrapy.Field()
-    # dia_semana
-    dia_semana = scrapy.Field()
-    # dia
-    dia = scrapy.Field()
-    # mes
-    mes = scrapy.Field()
-    # ano
-    ano = scrapy.Field()
-    # ligazons a seccions
-    ligazons_seccions = scrapy.Field()
-    # las posiciones de este array corresponden a:
-    #   0 disposicions_xerais
-    #   1 autoridades_persoal
-    #   2 autoridades_persoal_cesamentos
-    #   3 autoridades_persoal_nomeamentos
-    #   4 autoridades_persoal_substitucions
-    #   5 outras_disposicions
-    #   6 oposicions_concursos
-    #   7 administracion_xustiza
-    #   8 anuncios
-    #   9 anuncios_administracion_autonomica
-    #   10 anuncios_administracion_local
-    #   11 anuncios_outros
-
-    # Ligazons ó contido de cada sección
-    ligazons_contido = scrapy.Field()
-
-
-
+    document_number = scrapy.Field()
+    document_page = scrapy.Field()
+    document_url = scrapy.Field()
+    publication_week_day = scrapy.Field()
+    publication_day = scrapy.Field()
+    publication_month = scrapy.Field()
+    publication_year = scrapy.Field()
+    announcement_section = scrapy.Field()
+    announcement_subsection = scrapy.Field()
+    announcement_issuer = scrapy.Field()
+    announcement_summary = scrapy.Field()
+    announcement_content = scrapy.Field()
+    #announcement_signature = scrapy.Field()
     pass

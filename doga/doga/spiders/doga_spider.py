@@ -56,7 +56,11 @@ class DogaSpiderSpider(scrapy.Spider):
         item['announcement_subsection'] = response.css("span.dog-texto-subseccion::text").get()
         item['announcement_issuer'] = response.css("span.dog-texto-organismo::text").get()
         item['announcement_summary'] = response.css("span.dog-texto-sumario::text").get()
-        item['announcement_content'] = response.css("div.story").get().strip()
+        html_content = response.css("div.story").get().strip()
+        #html_content = response.body.decode('utf-8')
+        html_content = re.sub(r'<[^>]+>', '', html_content)
+        html_content = html_content.replace('\t', '').replace('\r', '').replace('\n', '')
+        item['announcement_content'] = html_content
         #item['announcement_signature'] = response.css("pdog-firma-centrada::text").strip()
 
         print('&&&&&&&&&&&&&&&&&&&&&&&&&&&&', item)

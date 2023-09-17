@@ -18,5 +18,4 @@ class DogaItem(scrapy.Item):
     announcement_issuer = scrapy.Field()
     announcement_summary = scrapy.Field()
     announcement_content = scrapy.Field()
-    #announcement_signature = scrapy.Field()
     pass

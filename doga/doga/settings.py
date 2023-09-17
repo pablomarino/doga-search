@@ -65,6 +65,7 @@ ROBOTSTXT_OBEY = True
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
 #    "doga.pipelines.DogaPipeline": 300,
+#    "doga.json_export_pipeline.JsonExportPipeline': 300,"
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -92,3 +93,5 @@ ROBOTSTXT_OBEY = True
 REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
+FEED_FORMAT = 'json'
+FEED_URI = 'output.json'

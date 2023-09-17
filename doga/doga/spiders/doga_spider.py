@@ -11,9 +11,7 @@ class DogaSpiderSpider(scrapy.Spider):
     start_urls = [
             'https://www.xunta.gal/diario-oficial-galicia/mostrarContenido.do?ruta=/u01/app/oracle/shared/resources/pxdog100/doga/Publicados/2023/20230917/Secciones1_gl.html',
             'https://www.xunta.gal/diario-oficial-galicia/mostrarContenido.do?ruta=/u01/app/oracle/shared/resources/pxdog100/doga/Publicados/2023/20230916/Secciones1_gl.html',
-            'https://www.xunta.gal/diario-oficial-galicia/mostrarContenido.do?ruta=/u01/app/oracle/shared/resources/pxdog100/doga/Publicados/2023/20230915/Secciones1_gl.html']
-
-    ''',
+            'https://www.xunta.gal/diario-oficial-galicia/mostrarContenido.do?ruta=/u01/app/oracle/shared/resources/pxdog100/doga/Publicados/2023/20230915/Secciones1_gl.html',
             'https://www.xunta.gal/diario-oficial-galicia/mostrarContenido.do?ruta=/u01/app/oracle/shared/resources/pxdog100/doga/Publicados/2023/20230914/Secciones1_gl.html',
             'https://www.xunta.gal/diario-oficial-galicia/mostrarContenido.do?ruta=/u01/app/oracle/shared/resources/pxdog100/doga/Publicados/2023/20230913/Secciones1_gl.html',
             'https://www.xunta.gal/diario-oficial-galicia/mostrarContenido.do?ruta=/u01/app/oracle/shared/resources/pxdog100/doga/Publicados/2023/20230912/Secciones1_gl.html',
@@ -271,7 +269,6 @@ class DogaSpiderSpider(scrapy.Spider):
             'https://www.xunta.gal/diario-oficial-galicia/mostrarContenido.do?ruta=/u01/app/oracle/shared/resources/pxdog100/doga/Publicados/2023/20230103/Secciones1_gl.html',
             'https://www.xunta.gal/diario-oficial-galicia/mostrarContenido.do?ruta=/u01/app/oracle/shared/resources/pxdog100/doga/Publicados/2023/20230102/Secciones1_gl.html',
             'https://www.xunta.gal/diario-oficial-galicia/mostrarContenido.do?ruta=/u01/app/oracle/shared/resources/pxdog100/doga/Publicados/2023/20230101/Secciones1_gl.html']
-        '''
 
 
 

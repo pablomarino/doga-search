@@ -14,7 +14,7 @@ services:
 
   webapp:
     build:
-      context: ./path/to/angular_app
+      context: ./webapp
       dockerfile: Dockerfile
     container_name: webapp
     ports:

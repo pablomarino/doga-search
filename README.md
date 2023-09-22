@@ -1,6 +1,6 @@
 # DOGa search
 
-# Setup
+## Setup
 
 Create a Virtual Environment
 ```bash
@@ -22,6 +22,7 @@ Get a list of initial pages to configure the crawler. You could use this script 
 ```bash
 python start_urls.py > urls.txt # On Mac/Linux use Python3 
 ```
+## Execution
 
 Copy the URLs inside doga_spider.py start_urls variable. To execute the crawler run the following commands:
 ```bash

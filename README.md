@@ -4,8 +4,7 @@
 
 Create a Virtual Environment
 ```bash
-python3 -m venv dogaenv # On Mac/Linux use Python3
-python -m venv dogaenv # On Windows
+python -m venv dogaenv # On Mac/Linux use Python3
 ```
 
 Activate your Virtual Environment

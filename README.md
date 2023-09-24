@@ -26,9 +26,8 @@ it will store a bunch of urls inside "data/start_urls.json" to access current ye
 
 ## Execution
 
-Copy the desired URLs inside doga_spider.py start_urls variable. To execute the crawler run the following commands:
+Copy the desired URLs inside doga_spider.py start_urls variable. To execute the crawler run the following command:
 ```bash
-cd doga
 scrapy crawl doga_spider
 ```
 After its execution, you could find the file "data/"output.json" containing a dictionary of elements

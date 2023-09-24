@@ -4,23 +4,23 @@
 
 Create a Virtual Environment
 ```bash
-python -m venv myenv
+python -m venv dogaenv # On Mac/Linux use Python3
 ```
 
 Activate your Virtual Environment
 ```bash
-venv\Scripts\activate # On Windows
-source ./venv/bin/activate # On Mac/Linux
+dogaenv\Scripts\activate # On Windows
+source dogaenv/bin/activate # On Mac/Linux
 ```
 
 Install project dependencies
 ```bash
-pip -r requirements.txt
+pip install -r requirements.txt
 ```
 
 Get a list of initial pages to configure the crawler. You could use this script to generate pages from the current year.
 ```bash
-python start_urls.py > urls.txt # On Mac/Linux use Python3 
+python define_start_urls.py > urls.txt # On Mac/Linux use Python3 
 ```
 ## Execution
 

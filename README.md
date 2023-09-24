@@ -20,15 +20,18 @@ pip install -r requirements.txt
 
 Get a list of initial pages to configure the crawler. You could use this script to generate pages from the current year.
 ```bash
-python define_start_urls.py > urls.txt # On Mac/Linux use Python3 
+python define_start_urls.py # On Mac/Linux use Python3 
 ```
+it will store a bunch of urls inside "data/start_urls.json" to access current year DOGa documents
+
 ## Execution
 
-Copy the URLs inside doga_spider.py start_urls variable. To execute the crawler run the following commands:
+Copy the desired URLs inside doga_spider.py start_urls variable. To execute the crawler run the following commands:
 ```bash
 cd doga
 scrapy crawl doga_spider
 ```
+After its execution, you could find the file "data/"output.json" containing a dictionary of elements
 
 Execute Elastic Search container
 ```bash

@@ -24,13 +24,16 @@ python define_start_urls.py # On Mac/Linux use Python3
 ```
 it will store a bunch of urls inside "data/start_urls.json" to access current year DOGa documents
 
-## Execution
+## Crawl
 
 To execute the crawler run the following command:
 ```bash
 scrapy crawl doga_spider
 ```
 It will crawl the seed url's from "data/start_urls.json". After its execution, you could find the file "data/"output.json" containing a dictionary of elements
+
+
+## Store data
 
 Execute Elastic Search container 
 ```bash
@@ -43,7 +46,7 @@ To store scrapped in Elastic shearch the documents run the command:
 python bulk_post_documents.py # On Mac/Linux use Python3 
 ```
 
-Start webapp
+## Run webapp
 
 ```bash
 cd webapp

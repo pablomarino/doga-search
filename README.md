@@ -47,3 +47,7 @@ npm run start
 
 ## Try it
 visit [http://localhost:4200](http://localhost:4200)
+
+
+
+TODO: añadir keywoords parsear SL, SLU para obtener empresas, Utiilizar una tabla de Localidades, en oposiciones y nombrameientos sacar Trabajos 

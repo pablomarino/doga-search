@@ -26,16 +26,21 @@ it will store a bunch of urls inside "data/start_urls.json" to access current ye
 
 ## Execution
 
-Copy the desired URLs inside doga_spider.py start_urls variable. To execute the crawler run the following command:
+To execute the crawler run the following command:
 ```bash
 scrapy crawl doga_spider
 ```
-After its execution, you could find the file "data/"output.json" containing a dictionary of elements
+It will crawl the seed url's from "data/start_urls.json". After its execution, you could find the file "data/"output.json" containing a dictionary of elements
 
-Execute Elastic Search container
+Execute Elastic Search container 
 ```bash
-docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.10.0
-# docker pull docker.elastic.co/elasticsearch/elasticsearch:8.10.1
+docker compose up
+```
+or run a Elastic search instance
+
+To store scrapped in Elastic shearch the documents run the command:
+```bash
+python bulk_post_documents.py # On Mac/Linux use Python3 
 ```
 
 Start webapp

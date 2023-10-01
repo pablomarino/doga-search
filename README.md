@@ -34,7 +34,7 @@ It will crawl the seed url's from "data/start_urls.json". After its execution, y
 
 Execute Elastic Search container 
 ```bash
-docker compose up
+docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.10.0
 ```
 or run a Elastic search instance
 

@@ -1,4 +1,7 @@
-# DOGa search
+# PAP search
+
+## Description
+Scrapes public administration publications information and stores it in an ElasticSearch Instance. Currently supports Diario oficial de Galicia (DOGA) publications
 
 ## Setup
 

@@ -37,28 +37,27 @@ It will crawl the seed url's from "data/start_urls.json". After its execution, y
 
 
 ## Store data
-
-Execute Elastic Search container 
+The options to deploy a development setup are:
+1. Execute a Elastic Search container 
 ```bash
 docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.10.0
 ```
-or run a Elastic search instance
+2. Run a Elastic search instance
+   
+   [Download ElasticSearch](https://www.elastic.co/es/downloads/elasticsearch)
 
-To store scrapped in Elastic shearch the documents run the command:
+   Since version 8 uses https by default, this could be modified editing the configuration file `config/elasticsearch.yml` and adding to the bottom the following directives.
+```yml
+xpack.security.enabled: false
+xpack.security.transport.ssl.enabled: false
+xpack.security.http.ssl.enabled: false
+```
+
+To store the scrapped documents in ElasticSearch run the command:
 ```bash
 python bulk_post_documents.py # On Mac/Linux use Python3 
 ```
-
+    
 ## Run webapp
 
-```bash
-cd webapp
-npm run start
-```
-
-## Try it
-visit [http://localhost:4200](http://localhost:4200)
-
-
-
-TODO: añadir keywoords parsear SL, SLU para obtener empresas, Utiilizar una tabla de Localidades, en oposiciones y nombrameientos sacar Trabajos 
+There's also a client to consume the stored data, check the [PAP Search Client repository](https://github.com/pablomarino/pap-search-client) for instructions of how to execute it !!

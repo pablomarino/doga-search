@@ -50,6 +50,7 @@ class DogaSpiderSpider(scrapy.Spider):
 
     def parse_content(cls, response):
         item = DogaItem()
+        item['publication_id'] = "DOGA"
         item['document_number'] = response.css("span#DOGNumero::text").get().strip().split(". ")[1]
         item['document_page'] = response.css("span#DOGPaxina::text").get().strip().split(". ")[1]
         item['document_url'] = response.request.url

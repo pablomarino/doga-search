@@ -73,6 +73,9 @@ class DogaSpiderSpider(scrapy.Spider):
         content = ''.join(response.css("div.story p::text").getall())
         # La almaceno eliminando caracteres \t \r \n
         item['announcement_content'] = re.sub(r'\s+', ' ', content)
+        date_today = datetime.date.today()
+        date_today_fmt = date_today.strftime("%Y-%m-%d")
+        item['retrieval_date'] = date_today_fmt
 
         yield item
 
@@ -96,6 +99,7 @@ class DogaSpiderSpider(scrapy.Spider):
         year = int(publication[2])
         # Creo objeto datetime
         date_obj = datetime.datetime(year, month, day)
+
 
         # Formateo la fecha como ISO 8601 el formato que utiliza ES
         # return date_obj.strftime('%Y-%m-%dT%H:%M:%S.%fZ')

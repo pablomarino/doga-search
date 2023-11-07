@@ -2,7 +2,7 @@ from elasticsearch import Elasticsearch
 from elasticsearch.exceptions import RequestError
 import json
 
-json_file_path = 'data/output.json'
+json_file_path = ['data/DOGA_output.json']
 es_client = Elasticsearch(
     [
         {
@@ -12,10 +12,13 @@ es_client = Elasticsearch(
         }
     ]
 )
-index_name = "doga"
+index_name = "pap"
 
 mapping = {
         "properties": {
+            "publication_id": {
+                "type": "text",
+            },
             "announcement_content": {
                 "type": "text",
             },
@@ -80,16 +83,16 @@ if not es_client.indices.exists(index=index_name):
 else:
     print(f"El índice '{index_name}' ya existe.")
 
+for filename in json_file_path:
+    # Cargo el fichero que contiene los documentos
+    with open(filename, "r", encoding="utf-8") as json_file:
+        # Load the JSON data into a Python dictionary or list
+        data = json.load(json_file)
 
-# Cargo el fichero que contiene los documentos
-with open(json_file_path, "r", encoding="utf-8") as json_file:
-    # Load the JSON data into a Python dictionary or list
-    data = json.load(json_file)
-
-# Añado los documentos
-for item in data:
-    try:
-        es_client.index(index=index_name, document=item)
-        print(f"Documento de la página {item['document_page']} agregado con éxito.")
-    except RequestError as e:
-        print(f"Error al agregar documento: {e}")
+    # Añado los documentos
+    for item in data:
+        try:
+            es_client.index(index=index_name, document=item)
+            print(f"Documento de la página {item['document_page']} agregado con éxito.")
+        except RequestError as e:
+            print(f"Error al agregar documento: {e}")

@@ -7,13 +7,13 @@ Scrapes public administration publications information and stores it in an Elast
 
 Create a Virtual Environment
 ```bash
-python -m venv dogaenv # On Mac/Linux use Python3
+python -m venv papenv # On Mac/Linux use Python3
 ```
 
 Activate your Virtual Environment
 ```bash
-dogaenv\Scripts\activate # On Windows
-source dogaenv/bin/activate # On Mac/Linux
+papenv\Scripts\activate # On Windows
+source papenv/bin/activate # On Mac/Linux
 ```
 
 Install project dependencies
@@ -33,8 +33,7 @@ To execute the crawler run the following command:
 ```bash
 scrapy crawl doga_spider
 ```
-It will crawl the seed url's from "data/start_urls.json". After its execution, you could find the file "data/"output.json" containing a dictionary of elements
-
+It will crawl the seed url's from "data/DOGA_start_urls.json". After its execution, you could find the file "data/TMP_output.json" containing a dictionary of elements  You'll have to manually rename this file to "data/DOGA_output.json".
 
 ## Store data
 The options to deploy a development setup are:

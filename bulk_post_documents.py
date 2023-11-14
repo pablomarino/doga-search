@@ -72,6 +72,7 @@ mapping = {
             }
         }
 }
+
 total_files = 0
 # Creo el indice
 if not es_client.indices.exists(index=index_name):
@@ -89,6 +90,7 @@ for filename in json_file_path:
     with open(filename, "r", encoding="utf-8") as json_file:
         # Load the JSON data into a Python dictionary or list
         data = json.load(json_file)
+    json_file.close()
 
     # Añado los documentos
     for item in data:

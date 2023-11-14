@@ -1,6 +1,6 @@
 import scrapy
 
-from ..items import DogaItem
+from ..items import PublicationItem
 import re, json, datetime
 
 
@@ -49,7 +49,7 @@ class DogaSpiderSpider(scrapy.Spider):
             yield scrapy.Request(url=f'{base_url}{link}', callback=cls.parse_content)
 
     def parse_content(cls, response):
-        item = DogaItem()
+        item = PublicationItem()
         item['publication_id'] = "DOGA"
         item['document_number'] = response.css("span#DOGNumero::text").get().strip().split(". ")[1]
         item['document_page'] = response.css("span#DOGPaxina::text").get().strip().split(". ")[1]

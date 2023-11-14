@@ -60,3 +60,6 @@ python bulk_post_documents.py # On Mac/Linux use Python3
 ## Run webapp
 
 There's also a client to consume the stored data, check the [PAP Search Client repository](https://github.com/pablomarino/pap-search-client) for instructions of how to execute it !!
+
+
+scrapy genspider boe_spider boe.es  

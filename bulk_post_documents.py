@@ -2,7 +2,7 @@ from elasticsearch import Elasticsearch
 from elasticsearch.exceptions import RequestError
 import json
 
-json_file_path = ['data/DOGA_output.json']
+json_file_path = ['data/DOGA_output.json', 'data/BOE_output.json']
 es_client = Elasticsearch(
     [
         {
@@ -72,6 +72,8 @@ mapping = {
             }
         }
 }
+
+total_files = 0
 # Creo el indice
 if not es_client.indices.exists(index=index_name):
     try:
@@ -88,11 +90,15 @@ for filename in json_file_path:
     with open(filename, "r", encoding="utf-8") as json_file:
         # Load the JSON data into a Python dictionary or list
         data = json.load(json_file)
+    json_file.close()
 
     # Añado los documentos
     for item in data:
         try:
             es_client.index(index=index_name, document=item)
-            print(f"Documento de la página {item['document_page']} agregado con éxito.")
+            print(f"{item['publication_id']} - Documento de la página {item['document_page']} agregado con éxito.")
+            total_files = total_files + 1
         except RequestError as e:
             print(f"Error al agregar documento: {e}")
+
+print(f"{total_files} documentos añadidos")

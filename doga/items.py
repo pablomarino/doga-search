@@ -5,7 +5,7 @@
 
 import scrapy
 
-class DogaItem(scrapy.Item):
+class PublicationItem(scrapy.Item):
     publication_id = scrapy.Field()
     document_number = scrapy.Field()
     document_page = scrapy.Field()

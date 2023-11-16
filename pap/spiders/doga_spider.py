@@ -29,8 +29,6 @@ class DogaSpiderSpider(scrapy.Spider):
         for url in cls.start_urls:
             yield scrapy.Request(url=url, callback=cls.parse)
 
-
-
     def parse(cls, response):
         base_url = "https://www.xunta.gal/diario-oficial-galicia/"
         # Obtengo los enlaces a secciones y subsecciones

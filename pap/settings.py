@@ -1,4 +1,4 @@
-# Scrapy settings for doga project
+# Scrapy settings for pap project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,14 +7,14 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "doga"
+BOT_NAME = "pap"
 
-SPIDER_MODULES = ["doga.spiders"]
-NEWSPIDER_MODULE = "doga.spiders"
+SPIDER_MODULES = ["pap.spiders"]
+NEWSPIDER_MODULE = "pap.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = "doga (+http://www.yourdomain.com)"
+#USER_AGENT = "pap (+http://www.yourdomain.com)"
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:85.0) Gecko/20100101 Firefox/85.0"
 
 # Obey robots.txt rules
@@ -46,13 +46,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    "doga.middlewares.DogaSpiderMiddleware": 543,
+#    "pap.middlewares.PapSpiderMiddleware": 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    "doga.middlewares.DogaDownloaderMiddleware": 543,
+#    "pap.middlewares.PapDownloaderMiddleware": 543,
 #}
 
 # Enable or disable extensions
@@ -64,8 +64,8 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    "doga.pipelines.DogaPipeline": 300,
-#    "doga.json_export_pipeline.JsonExportPipeline': 300,"
+#    "pap.pipelines.PapPipeline": 300,
+#    "pap.json_export_pipeline.JsonExportPipeline': 300,"
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)

@@ -1,5 +1,7 @@
 # generated json files
 data/
+data/_old/
+.idea/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

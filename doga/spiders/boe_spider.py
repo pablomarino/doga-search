@@ -76,9 +76,12 @@ class BoeSpiderSpider(scrapy.Spider):
                                 fecha_wo_format = response.css('li.destino::text').get().split(" - ")[0].split("/")
                                 item['publication_date'] = f'{fecha_wo_format[2]}-{fecha_wo_format[1]}-{fecha_wo_format[0]}'
                                 item['document_url'] = url_pdf
-                                item['announcement_section'] = re.sub(r"^(?:I{1,3}|IV|V|VI{1,3}|IX|X)(?:\. )", "", h3_text)
+                                # Elimino numeración romana
+                                h3_text=re.sub(r"^(?:I{1,3}|IV|V|VI{1,3}|IX|X)(?:\. )", "", h3_text)
+                                # sustituyo cadenas . - A. , . - B. por -
+                                item['announcement_section'] = re.sub(r'\. - [A-Z]\. ', " - ", h3_text)
                                 item['announcement_subsection'] = h5_text
-                                item['announcement_issuer'] = h4_text
+                                item['announcement_issuer'] = h4_text.capitalize()
                                 item['announcement_summary'] = current_text
                                 date_today = datetime.date.today()
                                 date_today_fmt = date_today.strftime("%Y-%m-%d")
